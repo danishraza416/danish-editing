@@ -1,4 +1,6 @@
+import os
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -7,8 +9,8 @@ def home():
 
 @app.route("/order", methods=["POST"])
 def order():
-    return render_template("success.html",
-        name=request.form.get("name",""),
-        service=request.form.get("service",""))
+    return "Order received successfully!"
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
