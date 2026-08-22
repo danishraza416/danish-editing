@@ -1,132 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danish Editing</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITSDN — Premium Editing Studio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#050507;color:#fff;overflow-x:hidden}
+body:before{content:"";position:fixed;width:420px;height:420px;border-radius:50%;background:#8b3dff;filter:blur(150px);opacity:.12;right:-160px;top:80px;pointer-events:none}
+a{text-decoration:none;color:inherit}
+.nav{position:fixed;z-index:99;top:0;left:0;right:0;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,7,.78);backdrop-filter:blur(18px);border-bottom:1px solid #1d1724}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}.logo .its{color:#fff}.logo .dn{color:#a75cff}
+.navlinks{display:flex;gap:25px;color:#aaa;font-size:13px}.navlinks a:hover{color:#fff}
+.insta{background:linear-gradient(135deg,#7d36ff,#c56cff);padding:11px 16px;border-radius:12px;font-size:12px;font-weight:800}
+.hero{min-height:100vh;padding:140px 7% 80px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.hero-text{max-width:650px}
+.eyebrow{color:#a85cff;font-size:11px;letter-spacing:3px;font-weight:800;margin-bottom:22px}
+h1{font-size:clamp(50px,8vw,100px);line-height:.9;letter-spacing:-6px;font-weight:900}
+h1 span,h2 span{color:#a65cff}
+.desc{color:#999;line-height:1.7;font-size:15px;max-width:570px;margin:28px 0}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:13px 18px;border-radius:12px;font-size:13px;font-weight:800}
+.primary{background:linear-gradient(135deg,#873cff,#c069ff);box-shadow:0 0 35px #8c43ff33}
+.secondary{border:1px solid #2a2132;background:#0c0a0f}
+.visual{width:430px;height:430px;position:relative;display:grid;place-items:center}
+.orb{width:290px;height:290px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#dfa9ff,#7b26e8 42%,#13081d 72%);box-shadow:0 0 100px #8d3cff88;animation:float 5s ease-in-out infinite}
+.brand{position:absolute;text-align:center;font-size:62px;line-height:.72;font-weight:900;letter-spacing:-5px}.brand span{color:#a65cff}
+.float-card{position:absolute;background:#100d15cc;border:1px solid #33253d;border-radius:15px;padding:14px 16px;backdrop-filter:blur(14px);box-shadow:0 15px 45px #0008;font-size:13px}.float-card small{display:block;color:#888;margin-top:5px;font-size:10px}.one{left:0;top:70px}.two{right:0;bottom:60px}
+.section{padding:100px 7%}
+.section h2{font-size:clamp(40px,5vw,65px);letter-spacing:-3px;margin-bottom:45px}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;padding:30px;border:1px solid #241b2d;border-radius:24px;background:linear-gradient(145deg,#100d14,#08080b);min-height:365px;display:flex;flex-direction:column;transition:.3s}
+.card:hover{transform:translateY(-8px);border-color:#914dff;box-shadow:0 20px 60px #7d32ff20}
+.featured{background:radial-gradient(circle at 80% 0,#8c3dff20,transparent 45%),#100b15;border-color:#7040a0}
+.badge{position:absolute;right:18px;top:18px;background:#873cff;padding:7px 9px;border-radius:20px;font-size:9px;letter-spacing:1px}
+.icon{font-size:32px;margin-bottom:25px}.card h3{font-size:23px}.card p{color:#8f8a96;font-size:13px;line-height:1.7;margin:12px 0 20px}.price{margin-top:auto;font-size:38px;font-weight:900}.price small{font-size:11px;color:#777;font-weight:500}.book{color:#b777ff;font-size:13px;font-weight:800;margin-top:20px}
+.workgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.work{height:270px;border:1px solid #241b2d;border-radius:22px;background:linear-gradient(135deg,#17101f,#09090c);padding:25px;display:flex;align-items:end;justify-content:space-between;position:relative;overflow:hidden}.work:before{content:"";position:absolute;width:200px;height:200px;background:#873cff;filter:blur(90px);opacity:.18;right:20%;top:5%}.work.tall{height:560px;grid-row:span 2}.work strong{font-size:25px;line-height:1}.work b{color:#9d62d8}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.showcase{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.media-card{background:#0c0a10;border:1px solid #241b2d;border-radius:22px;overflow:hidden;transition:.3s}
+.media-card:hover{transform:translateY(-7px);border-color:#914dff;box-shadow:0 20px 60px #7d32ff20}
+.fake-photo,.video-box{height:330px;position:relative;overflow:hidden}
+.fake-photo:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 30% 25%,#d8a4ff 0 7%,transparent 20%),radial-gradient(circle at 75% 65%,#7b20dd 0 13%,transparent 38%),linear-gradient(135deg,#111,#32105c 48%,#050507);filter:saturate(1.25)}
+.fake-photo:after{content:"";position:absolute;width:130px;height:210px;border-radius:50% 50% 45% 45%;background:linear-gradient(145deg,#2a1837,#09080d);left:50%;top:48%;transform:translate(-50%,-50%);box-shadow:0 0 60px #b15cff55}
+.nature:before{background:radial-gradient(circle at 65% 20%,#e2b6ff 0 6%,transparent 16%),linear-gradient(150deg,#061512,#1b5b56 42%,#12051d 75%,#050507)}
+.nature:after{width:280px;height:160px;border-radius:50% 50% 10% 10%;background:linear-gradient(160deg,#142d2a,#0a0b0c);top:66%;box-shadow:0 0 80px #55c7a933}
+.night:before{background:radial-gradient(circle at 70% 20%,#ffffff 0 2%,transparent 5%),radial-gradient(circle at 25% 40%,#a25aff 0 8%,transparent 25%),linear-gradient(150deg,#03030b,#17103a 55%,#050507)}
+.night:after{width:230px;height:230px;border-radius:50%;background:linear-gradient(145deg,#242038,#050507);top:58%;box-shadow:0 0 70px #8d49ff55}
+.photo-label{position:absolute;z-index:2;left:24px;top:24px;font-size:28px;font-weight:900;line-height:.95;letter-spacing:-1px}
+.photo-grade{position:absolute;z-index:2;right:20px;bottom:20px;font-size:9px;letter-spacing:2px;color:#c28aff}
+.photo-glow{position:absolute;z-index:2;inset:0;background:linear-gradient(120deg,transparent 45%,#ffffff10 50%,transparent 55%);transform:translateX(-100%);animation:sweep 4s infinite}
+.video-box{background:radial-gradient(circle at 50% 40%,#7f36ff33,transparent 30%),linear-gradient(135deg,#08070b,#180d27 55%,#050507);display:grid;place-items:center}
+.play{width:76px;height:76px;border:1px solid #c28aff88;border-radius:50%;display:grid;place-items:center;color:#fff;background:#9b4cff22;box-shadow:0 0 50px #9b4cff55;font-size:25px;padding-left:4px}
+.video-text{position:absolute;left:24px;top:24px;font-size:28px;font-weight:900;line-height:.95}
+.video-lines{position:absolute;bottom:25px;left:25px;right:25px;height:3px;background:linear-gradient(90deg,#a65cff 0 42%,#ffffff22 42%);border-radius:5px}
+.media-info{padding:20px 22px 23px}.media-info h3{font-size:18px}.media-info p{color:#777;font-size:11px;margin-top:7px}
+.video-demo{margin-top:28px;padding:30px;border:1px solid #241b2d;border-radius:24px;background:linear-gradient(145deg,#100b16,#08080b);display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:center}
+.video-demo h3{font-size:35px;line-height:1;letter-spacing:-2px}.video-demo h3 span{color:#a65cff}.video-demo p{color:#777;font-size:12px;line-height:1.6;margin-top:14px}.video-demo video{width:100%;border-radius:15px;background:#050507;border:1px solid #2a2032}
+@keyframes sweep{50%,100%{transform:translateX(100%)}}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b0b0f;
-            color: white;
-            text-align: center;
-        }
-
-        nav {
-            padding: 20px;
-            background: #111118;
-        }
-
-        nav h2 {
-            color: #fff;
-        }
-
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-        }
-
-        .hero h1 {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            color: #9b5cff;
-        }
-
-        .hero p {
-            color: #aaa;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            background: #9b5cff;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            display: inline-block;
-        }
-
-        .cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 30px;
-        }
-
-        .card {
-            background: #15151d;
-            padding: 30px;
-            width: 250px;
-            border-radius: 20px;
-            border: 1px solid #292933;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #aaa;
-        }
-
-        footer {
-            padding: 25px;
-            color: #777;
-            background: #111118;
-        }
-    </style>
+.package{margin-top:24px;border:1px solid #7040a0;border-radius:26px;padding:30px;background:radial-gradient(circle at 80% 0,#8c3dff25,transparent 45%),linear-gradient(145deg,#120b1b,#08080b);display:flex;justify-content:space-between;align-items:center;gap:30px;box-shadow:0 20px 70px #7d32ff12}
+.package-badge{display:inline-block;background:#873cff;padding:7px 10px;border-radius:20px;font-size:9px;font-weight:900;letter-spacing:1.5px;margin-bottom:14px}
+.package h3{font-size:28px;letter-spacing:-1px}.package p{color:#888;font-size:13px;margin:9px 0 17px}.package ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px;color:#bdb6c5;font-size:12px}.package-price{min-width:180px;text-align:center}.package-price strong{display:block;font-size:48px;letter-spacing:-3px}.package-price span{display:block;color:#777;font-size:11px;margin:4px 0 18px}.package-price .btn{display:inline-block}
+.contact{text-align:center}.contactbox{max-width:850px;margin:auto;border:1px solid #241b2d;border-radius:28px;padding:65px 25px;background:radial-gradient(circle at 50% 0,#8b3dff1c,transparent 50%),#0a090d}.contact h2{font-size:clamp(40px,6vw,70px);letter-spacing:-4px;margin-bottom:18px}.contact p{color:#888;line-height:1.7;margin-bottom:28px}.contact .buttons{justify-content:center}
+footer{text-align:center;color:#555;font-size:11px;padding:30px;border-top:1px solid #17131b}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s}.show{opacity:1;transform:none}
+@keyframes float{50%{transform:translateY(-16px)}}
+@media(max-width:800px){
+.nav{padding:16px 5%}.navlinks{display:none}.hero{padding:125px 6% 70px;flex-direction:column;align-items:flex-start}.visual{width:100%;height:340px}.orb{width:220px;height:220px}.brand{font-size:52px}.one{left:0}.two{right:0}
+.section{padding:80px 6%}.pricing{grid-template-columns:1fr}.package{flex-direction:column;align-items:flex-start}.package ul{grid-template-columns:1fr}.package-price{width:100%;text-align:left}.package-price .btn{margin-top:4px}.showcase{grid-template-columns:1fr}.video-demo{grid-template-columns:1fr}.fake-photo,.video-box{height:280px}.workgrid{grid-template-columns:1fr}.work.tall{height:270px;grid-row:auto}.work{height:250px}h1{letter-spacing:-4px}
+}
+</style>
 </head>
-
 <body>
 
-    <nav>
-        <h2>🖤 Danish Editing</h2>
-    </nav>
+<header class="nav">
+<a class="logo" href="#home"><span class="its">IT&#39;S</span> <span class="dn">DN</span></a>
+<nav class="navlinks"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
+<a class="insta" href="https://instagram.com/_itsdn__" target="_blank">Instagram ↗</a>
+</header>
 
-    <section class="hero">
-        <h1>Welcome to <span>Danish Editing</span></h1>
-        <p>Cinematic • Creative • Aesthetic</p>
-        <a href="#services" class="btn">Explore</a>
-    </section>
+<section id="home" class="hero">
+<div class="hero-text reveal">
+<div class="eyebrow">✦ PREMIUM EDITING STUDIO</div>
+<h1>TURN YOUR<br><span>VISION</span> INTO<br>VISUALS.</h1>
+<p class="desc">Cinematic video edits, scroll-stopping reels and clean photo edits — made to look premium on every screen.</p>
+<div class="buttons">
+<a class="btn primary" href="#services">View Services ↓</a>
+<a class="btn secondary" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20to%20book%20an%20editing%20service." target="_blank">WhatsApp ↗</a>
+</div>
+</div>
+<div class="visual reveal">
+<div class="orb"></div><div class="brand">IT<br><span>SDN</span></div>
+<div class="float-card one">🎬 <b>CINEMATIC</b><small>Premium color grading</small></div>
+<div class="float-card two">⚡ <b>REELS</b><small>Made for attention</small></div>
+</div>
+</section>
 
-    <section class="cards" id="services">
+<section id="services" class="section">
+<div class="eyebrow">✦ SERVICES & PRICING</div>
+<h2>Choose your <span>service.</span></h2>
 
-        <div class="card">
-            <h3>🎬 Video Editing</h3>
-            <p>Cinematic and professional video edits.</p>
-        </div>
+<div class="pricing">
+<article class="card featured reveal">
+<div class="badge">MOST PREMIUM</div><div class="icon">🎬</div>
+<h3>Video Editing</h3>
+<p>Professional PC editing with cinematic cuts, storytelling, transitions and color grading.</p>
+<div class="price">₹999 <small>/ project</small></div>
+<a class="book" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20Video%20Editing%20for%20%E2%82%B9999." target="_blank">Book Now →</a>
+</article>
 
-        <div class="card">
-            <h3>📸 Photo Editing</h3>
-            <p>Premium aesthetic photo editing.</p>
-        </div>
+<article class="card reveal">
+<div class="icon">📱</div><h3>Reels Editing</h3>
+<p>Instagram-ready reels with beat sync, captions, transitions and clean effects.</p>
+<div class="price">₹249 <small>/ reel</small></div>
+<a class="book" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20Reels%20Editing%20for%20%E2%82%B9249." target="_blank">Book Now →</a>
+</article>
 
-        <div class="card">
-            <h3>✨ Reels</h3>
-            <p>Instagram reels with cinematic vibes.</p>
-        </div>
+<article class="card reveal">
+<div class="icon">🖼️</div><h3>Photo Editing</h3>
+<p>Clean retouching, cinematic grading, glow and premium Instagram finishing.</p>
+<div class="price">₹99 <small>/ photo</small></div>
+<a class="book" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20Photo%20Editing%20for%20%E2%82%B999." target="_blank">Book Now →</a>
+</article>
 
-    </section>
+<article class="card reveal">
+<div class="icon">🎥</div><h3>Cinematic Phone Shoot</h3>
+<p>Cinematic mobile shooting for reels, portraits, events and social-media content.</p>
+<div class="price">₹199 <small>/ shoot</small></div>
+<a class="book" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20a%20Cinematic%20Phone%20Shoot%20for%20%E2%82%B9199." target="_blank">Book Shoot →</a>
+</article>
 
-    <footer>
-        © 2026 Danish Editing
-    </footer>
+<article class="card reveal">
+<div class="icon">📸</div><h3>Phone Photo Shoot</h3>
+<p>Mobile portrait and lifestyle photos with a clean, cinematic Instagram look.</p>
+<div class="price">₹99 <small>/ shoot</small></div>
+<a class="book" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20a%20Phone%20Photo%20Shoot%20for%20%E2%82%B999." target="_blank">Book Shoot →</a>
+</article>
+</div>
 
+<div class="package reveal">
+<div class="package-copy">
+<div class="package-badge">🔥 BEST VALUE</div>
+<h3>ITSDN Creator Package</h3>
+<p>Everything you need to create a strong Instagram-ready content set.</p>
+<ul>
+<li>🎥 1 Cinematic Phone Shoot</li>
+<li>📱 2 Reels Editing</li>
+<li>🖼️ 5 Photo Edits</li>
+<li>🎨 Cinematic color grading</li>
+<li>✨ Smooth transitions + basic effects</li>
+<li>📲 Instagram-ready delivery</li>
+</ul>
+</div>
+<div class="package-price"><strong>₹799</strong><span>Creator Package</span>
+<a class="btn primary" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20the%20Creator%20Package%20for%20%E2%82%B9799." target="_blank">Book Package ↗</a></div>
+</div>
+</section>
+
+<section id="work" class="section">
+<div class="eyebrow">✦ EDITING SHOWCASE</div>
+<h2>See what I <span>create.</span></h2>
+
+<div class="showcase">
+  <article class="media-card reveal">
+    <div class="fake-photo portrait">
+      <div class="photo-glow"></div><div class="photo-label">CINEMATIC<br>PORTRAIT</div><div class="photo-grade">COLOR GRADE • 01</div>
+    </div>
+    <div class="media-info"><h3>Portrait Color Grade</h3><p>Dark cinematic tones • glow • premium finish</p></div>
+  </article>
+
+  <article class="media-card reveal">
+    <div class="fake-photo nature">
+      <div class="photo-glow"></div><div class="photo-label">NATURE<br>MOOD</div><div class="photo-grade">TEAL / PURPLE • 02</div>
+    </div>
+    <div class="media-info"><h3>Nature Cinematic</h3><p>Moody grading • depth • Instagram aesthetic</p></div>
+  </article>
+
+  <article class="media-card reveal">
+    <div class="video-box">
+      <div class="play">▶</div><div class="video-text">REEL<br>PREVIEW</div><div class="video-lines"></div>
+    </div>
+    <div class="media-info"><h3>Reels Editing</h3><p>Beat sync • transitions • captions • effects</p></div>
+  </article>
+
+  <article class="media-card reveal">
+    <div class="fake-photo night">
+      <div class="photo-glow"></div><div class="photo-label">NIGHT<br>VIBE</div><div class="photo-grade">HDR • 03</div>
+    </div>
+    <div class="media-info"><h3>Night Photo Edit</h3><p>Contrast • highlights • cinematic atmosphere</p></div>
+  </article>
+</div>
+
+<div class="video-demo reveal">
+  <div>
+    <div class="eyebrow">✦ VIDEO EDITING</div>
+    <h3>Real editing vibe,<br><span>one screen.</span></h3>
+    <p>Add your own reel/video here later. This player is ready for your MP4 file.</p>
+  </div>
+  <video controls playsinline preload="metadata" poster="">
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+</section>
+
+<section id="contact" class="section contact">
+<div class="contactbox reveal">
+<div class="eyebrow">✦ LET'S CREATE</div><h2>Ready to make<br>something <span>crazy?</span></h2>
+<p>DM on Instagram or message directly on WhatsApp to start your project.</p>
+<div class="buttons"><a class="btn primary" href="https://instagram.com/_itsdn__" target="_blank">Instagram · @_itsdn__</a><a class="btn secondary" href="https://wa.me/917667928416?text=Hi%20ITSDN%2C%20I%20want%20to%20start%20a%20project." target="_blank">WhatsApp · 7667928416</a></div>
+</div>
+</section>
+
+<footer>© 2026 ITSDN — Premium Editing Studio 🖤</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
+</script>
 </body>
 </html>
